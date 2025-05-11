@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
+import MarkdownRenderer from './components/markdown'
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -87,6 +88,30 @@ function App() {
     setInputValue(question);
   };
 
+   // 渲染消息内容，根据消息角色和内容决定是否使用 Markdown 渲染
+   const renderMessageContent = (message) => {
+    // 如果是用户消息，直接显示文本
+    if (message.role === 'user') {
+      return (
+        <div className="message-content">
+          {message.content.split('\n').map((line, i) => (
+            <React.Fragment key={i}>
+              {line}
+              {i < message.content.split('\n').length - 1 && <br />}
+            </React.Fragment>
+          ))}
+        </div>
+      );
+    }
+    
+    // 如果是 AI 消息，使用 Markdown 渲染
+    return (
+      <div className="message-content">
+        <MarkdownRenderer markdown={message.content} />
+      </div>
+    );
+  };
+
   return (
     <div className="chat-app">
       <header className="chat-header">
@@ -121,6 +146,9 @@ function App() {
                   {message.role === 'user' ? '👤' : '🤖'}
                 </div>
                 <div className="message-bubble">
+                  {renderMessageContent(message)}
+                </div>
+                {/* <div className="message-bubble">
                   <div className="message-content">
                     {message.content.split('\n').map((line, i) => (
                       <React.Fragment key={i}>
@@ -129,7 +157,7 @@ function App() {
                       </React.Fragment>
                     ))}
                   </div>
-                </div>
+                </div> */}
               </div>
             ))
           )}
