@@ -31,7 +31,7 @@ function App() {
       // 准备所有历史消息发送给 API
       const allMessages = [...messages, userMessage];
       
-      const response = await fetch('http://localhost:8787/graphql', {
+      const response = await fetch('https://api.lihuiwen.xyz/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
