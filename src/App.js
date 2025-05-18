@@ -6,7 +6,7 @@ import { MastraClient } from "@mastra/client-js";
 // 创建 Mastra 客户端实例
 const client = new MastraClient({ 
   // Required
-  baseUrl: "http://api.mastra.cr.lihuiwen.xyz", 
+  baseUrl: "https://api.mastra.cr.lihuiwen.xyz", 
   // Optional configurations for development
   retries: 3, // 重试次数
   backoffMs: 300, // 初始重试等待时间
