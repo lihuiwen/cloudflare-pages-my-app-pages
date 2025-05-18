@@ -8,6 +8,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const MarkdownRenderer = ({ markdown }) => {
+  console.log('markdown::', markdown)
   return (
     <div className="markdown-container">
       <ReactMarkdown
